@@ -109,8 +109,8 @@ Regras:
   - **Nas bios:** recortes da mesma foto a preto e branco (`grayscale(1) contrast(1.08)`), 4:5. Bruno com `object-position: 28% 18%`, Cila com `object-position: 74% 18%`.
   - **Ficheiro:** `src/assets/cila-bruno.jpg` (carregado pelo Diogo no Lovable em 29/09/2026).
 - **Paulo Kazaks:** foto real em `src/assets/paulo-kazaks.png` (carregada pelo Diogo em 29/09/2026), 4:5. Substitui o monograma "PK".
-- **Bio da Cila:** foto individual carregada pelo Diogo em 29/09/2026 ("colocar com imagem individual Cila Santos").
-- **Bio do Bruno:** recorte da foto do hero até haver foto individual.
+- **Bio da Cila:** foto individual `src/assets/cila-santos.jpg`, carregada pelo Diogo em 29/09/2026.
+- **Bio do Bruno:** foto individual carregada pelo Diogo em 29/09/2026 (prevista em `src/assets/bruno-rosado.*`). O recorte da foto do hero, descrito abaixo, só se usa se a individual faltar.
 - **Regra de série:** os três retratos (Cila, Bruno, Paulo) usam o mesmo formato (4:5) e o mesmo tratamento de cor.
 - **Recorte do Bruno:** janela da foto do hero de x 5%–51% e y 9%–47% (imagem com width 217%, left -11%, top -23% num contentor 4:5). Só o Bruno, sem nenhum pedaço da Cila. A 1ª versão mostrava a foto dupla inteira.
 - **Preto e branco que passa a cores (pedido do Diogo, 29/09/2026):** os retratos estão em `grayscale(1) contrast(1.05)`.
@@ -467,7 +467,7 @@ React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion), framer-motion, luc
 | Estacionamento, coffee break, certificado | A confirmar |
 | Processo de inscrição | Fora desta versão: a LP é só informativa (decisão de 29/09/2026). O Lovable Cloud ficou activado no projecto, mas sem tabelas nem dados |
 | Foto do Paulo Kazaks | Recebida (29/09/2026) |
-| Foto individual do Bruno | Não recebida. Usa-se recorte da foto do hero |
+| Foto individual do Bruno | O Diogo diz que a carregou no Lovable (29/09/2026). Às 17:45 ainda não estava nos ficheiros do projecto |
 | Logótipos das marcas | Não recebidos. As marcas aparecem só em texto |
 | Grafia "Kazaks" | **Confirmado pelo Diogo em 29/09/2026:** "Kazaks". A imprensa escreve "Kazak", mas não se usa |
 | "HM Negócios" | **Confirmado pelo Diogo em 29/09/2026:** "HM Negócios" |
