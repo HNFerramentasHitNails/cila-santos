@@ -3,17 +3,17 @@
 - **Data:** 29 de setembro de 2026
 - **Fonte do conteúdo:** `Estudo_LP_Formacao_Brasil_Cila_Bruno.pdf` (9 páginas, manual de conteúdo)
 - **Destino:** novo projecto Lovable, workspace **HN Principal**
-- **Estado:** especificação v1. Base da primeira versão no Lovable.
+- **Estado:** especificação v2 (29/09/2026): LP informativa, sem inscrição; correcções depois da revisão da 1ª versão no Lovable.
 
 ---
 
 ## 0. O essencial em 5 linhas
 
-- **O que é:** página de inscrição para uma formação presencial de 1 dia (20/10/2026, a partir das 10h00, BE Factory, São Paulo).
+- **O que é:** página **informativa** sobre uma formação presencial de 1 dia (20/10/2026, a partir das 10h00, BE Factory, São Paulo). **Não tem inscrição:** sem botões de inscrição, sem formulário e sem barra fixa (decisão do Diogo em 29/09/2026).
 - **Para quem:** empresários brasileiros que já têm um negócio a funcionar e querem multiplicá-lo.
-- **O único trabalho da página:** levar a pessoa ao formulário de inscrição ("Quero garantir minha inscrição").
-- **Narrativa (do PDF):** Portugal → Brasil → parceria empresarial → ecossistema real → experiência prática → novas oportunidades → inscrição.
-- **Língua da página:** português do Brasil. O público é brasileiro, e o título e o CTA do PDF já estão em PT-BR. A única frase que fica em PT-PT é a citação da Cila, porque é a voz dela.
+- **O único trabalho da página:** apresentar a formação, os três sócios e o ecossistema com autoridade, até a pessoa fixar a data e o local.
+- **Narrativa (do PDF):** Portugal → Brasil → parceria empresarial → ecossistema real → experiência prática → novas oportunidades → o encontro (data e local).
+- **Língua da página:** português do Brasil. O público é brasileiro, e o título do PDF já está em PT-BR. A única frase que fica em PT-PT é a citação da Cila, porque é a voz dela.
 
 ---
 
@@ -53,11 +53,10 @@ O Atlântico entre Lisboa e São Paulo, desenhado com a pedra que os dois paíse
 | `--brasa` | `#C73A33` | O mesmo acento sobre fundo escuro | branco sobre ele **5,15:1**; ele sobre basalto **3,38:1** |
 
 **Onde o acento pode aparecer (e mais nenhum sítio):**
-1. Botão principal de inscrição (fundo pau-brasil; brasa em secções escuras).
-2. A data "20 de outubro de 2026" no hero e nas informações práticas.
-3. Linha de progresso de leitura no header.
-4. Estado activo do diagrama do ecossistema (hover, foco ou toque).
-5. As aspas da citação da Cila.
+1. A data "20 de outubro de 2026" no hero, nas informações práticas e no encerramento.
+2. Linha de progresso de leitura no header.
+3. Estado activo do diagrama do ecossistema (hover, foco ou toque).
+4. As aspas da citação da Cila.
 
 Sem gradientes decorativos e sem sombras. A profundidade vem dos blocos de cor e da fotografia.
 
@@ -98,7 +97,7 @@ Regras:
 - **Alinhamento:** tudo alinhado à esquerda, com composição editorial assimétrica (título numa coluna larga, texto noutra). Nada centrado, excepto o bloco do convite do Paulo.
 - **Espaçamento (base 4):** 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 160.
 - **Padding vertical de secção:** 160px (desktop), 112px (tablet), 80px (mobile).
-- **Raios por hierarquia:** fotos 0; tiles do ecossistema 0 com filete; botões e inputs 6px; cartão do formulário 4px.
+- **Raios por hierarquia:** fotos 0; tiles do ecossistema 0 com filete; cartão do encerramento 4px.
 - **Ícones:** lucide-react, traço 1.5, 20px. Usados só em informações práticas (calendário, relógio, pin, pessoas) e em links externos (`arrow-up-right`, que indica "abre noutro separador").
 
 ---
@@ -122,16 +121,14 @@ Três momentos com significado. Tudo o resto é resposta a acções da pessoa. C
    - 0ms: a foto passa de opacidade 0 e escala 1.04 para 1, em 1200ms, `cubic-bezier(.16,1,.3,1)`.
    - 150ms: "Paulo Kazaks convida Cila Santos & Bruno Rosado" entra com fade de 400ms.
    - 250ms: cada linha do título anima `font-stretch` de 75% para 112%, opacidade de 0 para 1 e y de 12px para 0, em 900ms, com 110ms entre linhas. **Só no desktop**, onde cada linha tem `white-space: nowrap`. No mobile, só opacidade e y.
-   - 800ms: subtítulo, CTA e linha de informações entram com fade de 400ms.
+   - 800ms: subtítulo e linha de informações entram com fade de 400ms.
 2. **A onda atravessa (ligada ao scroll):** no fundo do hero, a faixa Mar Largo desliza na horizontal um comprimento de onda (384 unidades) enquanto o hero sai do ecrã. Quem faz scroll está a "atravessar o Atlântico". Não há animação em loop.
 3. **Ecossistema a ligar-se:** quando o diagrama fica 35% visível, as ligações desenham-se a partir da HN Hit Nails (`pathLength` de 0 para 1, 1000ms, 80ms entre ligações), uma só vez.
    - **Manifestos:** nas 3 frases-manifesto, cada palavra passa de opacidade .22 para 1 enquanto a frase atravessa o ecrã (dos 80% aos 35% da altura), ligado ao scroll.
 
 **Micro-interacções:**
-- **Botão principal:** escurece 8% no hover e desce 1px no clique.
 - **Tiles do ecossistema:** invertem para fundo basalto no hover e no foco (200ms).
 - **FAQ:** acordeão abre em 250ms.
-- **Barra fixa (mobile):** sobe em 250ms.
 - **Linha de progresso do header:** `scaleX` ligado ao scroll da página.
 - **Contador:** números mudam sem efeito.
 
@@ -145,14 +142,14 @@ A ordem segue o ponto 10 do PDF (14 blocos). A Cila e o Bruno ficam num só spre
 
 ### Header (fixo, 64px, basalto)
 `[Negócios Sem Fronteiras]` (Archivo 800, largura 125%, 16px, calcário) à esquerda.
-`[Quero garantir minha inscrição]` (botão brasa, compacto) à direita.
-Sem menu, para a pessoa não sair do percurso. Em baixo, linha de progresso de 2px em pau-brasil.
+"20 de outubro | São Paulo" (15px, 500, cinza) à direita. Não há botão.
+Sem menu. Em baixo, linha de progresso de 2px em pau-brasil.
 
 ### 01 Hero (basalto)
 ```
 DESKTOP 1440
 ┌──────────────────────────────────────────────────────────────────────┐
-│ Negócios Sem Fronteiras                  [Quero garantir inscrição]  │
+│ Negócios Sem Fronteiras                   20 de outubro | São Paulo  │
 ├───────────────────────────────────┬──────────────────────────────────┤
 │ Paulo Kazaks convida              │                                  │
 │ Cila Santos & Bruno Rosado        │     FOTO Cila & Bruno (2:3)      │
@@ -165,7 +162,6 @@ DESKTOP 1440
 │ sários que já construíram algo    │                                  │
 │ e querem multiplicar essa         │                                  │
 │ estrutura.                        │                                  │
-│ [Quero garantir minha inscrição]  │                                  │
 │                                   │                                  │
 │ 20 de outubro de 2026 │ A partir das 10h00 │ BE Factory, São Paulo  │
 ├───────────────────────────────────┴──────────────────────────────────┤
@@ -176,7 +172,7 @@ Texto: colunas 1–6. Foto: colunas 7–12 + margem. Altura do hero: máx. 880px
 
 MOBILE 375
 ┌─────────────────────┐
-│ NSF    [Inscrição]  │
+│ NSF   20 out | SP   │
 │ FOTO 4:5 (caras)    │
 │ gradiente em baixo  │
 │ Paulo Kazaks convida│
@@ -186,7 +182,6 @@ MOBILE 375
 │ precisa se          │
 │ multiplicar.        │
 │ subtítulo           │
-│ [CTA largura total] │
 │ 20 out 2026 | 10h00 │
 │ BE Factory, SP      │
 │≈≈≈≈ Mar Largo ≈≈≈≈≈│
@@ -195,9 +190,9 @@ MOBILE 375
 - **Linha de convite:** "Paulo Kazaks convida Cila Santos & Bruno Rosado". Em cinza, 16px, 600, com os nomes em calcário.
 - **Título:** "Seu negócio já funciona. Agora ele precisa se multiplicar."
 - **Subtítulo:** "Uma formação presencial para empresários que já construíram algo e querem transformar essa estrutura em novos produtos, novos canais e novas fontes de receita."
-- **CTA:** "Quero garantir minha inscrição" (âncora `#inscricao`).
 - **Linha de informações:** 3 blocos separados por filete vertical: "20 de outubro de 2026" (brasa), "A partir das 10h00", "BE Factory, São Paulo". Não usar pontos médios.
-- **Coordenadas:** 13px, cinza, `tabular-nums`, nos cantos inferiores da faixa.
+- **Coordenadas:** 13px, cinza, `tabular-nums`, numa linha de 40px em basalto logo **acima** da onda ("Lisboa…" à esquerda, "São Paulo…" à direita). Nunca por cima das ondas, onde ficam ilegíveis (erro visto na 1ª versão).
+- **O título nunca entra na coluna da foto:** largura máxima de 7 colunas e tamanho `clamp(44px, 5.4vw, 84px)` no desktop, para "Seu negócio já funciona." caber em 1–2 linhas sem tapar as caras. Na 1ª versão, a 1920px, a 1ª linha ia até aos ~75% da largura, por cima da foto.
 
 ### 02 De Portugal para o Brasil (calcário)
 ```
@@ -257,7 +252,7 @@ Mobile: empilhado, primeiro a Cila.
 │                          ╰──── Novas marcas e projetos     activo]   │
 │                                                                      │
 │ Novos produtos. Novos canais. Novas receitas. Um único ecossistema.  │  ← manifesto
-│ fecho (colunas 1–7)                                   [CTA brasa]    │
+│ fecho (colunas 1–7)                                                  │
 └──────────────────────────────────────────────────────────────────────┘
 Mobile: a origem em cima; os 6 nós em coluna, ligados por uma linha vertical com ramificações; a descrição sempre visível por baixo de cada nó.
 ```
@@ -274,7 +269,6 @@ Mobile: a origem em cima; os 6 nós em coluna, ligados por uma linha vertical co
 - Os nós são `<button>`, focáveis, com `aria-pressed`. O primeiro nó começa activo.
 - **Manifesto:** "Novos produtos. Novos canais. Novas receitas. Um único ecossistema."
 - **Fecho:** "É exatamente essa experiência que Cila e Bruno vêm compartilhar com empresários brasileiros: não apenas o que funcionou, mas também como foram identificando oportunidades, criando novas áreas e estruturando cada passo para que o crescimento não dependesse de uma única fonte de receita."
-- **CTA:** "Quero garantir minha inscrição"
 
 ### 06 Conheça o ecossistema por dentro (calcário)
 ```
@@ -320,7 +314,6 @@ Os links têm `target="_blank" rel="noopener noreferrer"` e `aria-label` com "(a
 │ (basalto, centrado)  Paulo Kazaks convida                            │
 │                      Cila Santos & Bruno Rosado                      │
 │                      Diretamente de Portugal para o Brasil.          │
-│                      [Quero garantir minha inscrição]                │
 └──────────────────────────────────────────────────────────────────────┘
 Mobile: Portugal / faixa horizontal com "HM Negócios" / Brasil.
 ```
@@ -329,7 +322,7 @@ Mobile: Portugal / faixa horizontal com "HM Negócios" / Brasil.
 - **Ponte:** à esquerda "Portugal" com Cila Santos e Bruno Rosado; ao centro a faixa Mar Largo vertical com a etiqueta "HM Negócios" num rectângulo calcário que a atravessa; à direita "Brasil" com Paulo Kazaks.
 - **Manifesto:** "Sócios. Empresários. Dois países. Uma visão de crescimento."
 - **Quem é Paulo Kazaks?** "Empresário brasileiro, parceiro de negócios de Cila Santos e Bruno Rosado e sócio dos dois na HM Negócios. Paulo representa o lado brasileiro desta parceria. Sua experiência como empresário e sua ligação a diferentes projetos e negócios tornam essa relação coerente com o conceito da formação: criar, conectar e expandir negócios para além de uma única área ou mercado. É Paulo quem abre as portas no Brasil para este encontro e recebe Cila e Bruno na BE Factory, reunindo empresários para uma formação dedicada a estratégia, crescimento e construção de ecossistemas."
-- **Convite (bloco basalto, centrado):** "Paulo Kazaks convida" (cinza, 18px) / "Cila Santos & Bruno Rosado" (manifesto, calcário) / "Diretamente de Portugal para o Brasil." / CTA brasa.
+- **Convite (bloco basalto, centrado):** "Paulo Kazaks convida" (cinza, 18px) / "Cila Santos & Bruno Rosado" (manifesto, calcário) / "Diretamente de Portugal para o Brasil."
 
 ### 09 Por que esta formação? (basalto)
 ```
@@ -343,7 +336,7 @@ Mobile: Portugal / faixa horizontal com "HM Negócios" / Brasil.
 │ Que novos canais posso criar?                                        │
 │ ──────────────────────────────────────────────────────────────────── │
 │ ... (5 perguntas)                                                    │
-│ fecho                                                  [CTA brasa]   │
+│ fecho                                                                │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 - **H2:** "Chega um momento em que o próximo nível de um negócio já não depende de vender mais do que já existe."
@@ -395,7 +388,6 @@ Duas colunas: "É para você se" (fundo basalto) e "Não é para você se" (file
 │ 20 de outubro   A partir das 10h   Presencial       BE Factory       │
 │ Cidade          Investimento       Vagas            Término          │
 │ São Paulo       [a confirmar]      [a confirmar]    [a confirmar]    │
-│                                                   [CTA brasa]        │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 - **Contador:** até `2026-10-20T10:00:00-03:00` (São Paulo, sem horário de verão). Depois dessa hora mostra "O encontro já começou."
@@ -412,63 +404,49 @@ Acordeão (shadcn), colunas 1–8. Uma pergunta aberta de cada vez.
 6. **Quantas vagas existem?** `[a confirmar]`
 7. **A que horas termina?** `[a confirmar]`
 8. **Há certificado, coffee break ou estacionamento?** `[a confirmar]`
-9. **Como faço minha inscrição?** Preencha o formulário no final desta página. `[processo de confirmação a definir]`
 
-### 14 Inscrição + CTA final (`#inscricao`, fundo Mar Largo em página inteira)
+### 14 Encerramento (`#encerramento`, fundo Mar Largo em página inteira)
+Sem formulário e sem botão: a página fecha repetindo a tese e o encontro.
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ calçada Mar Largo (estática) ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
-│≈≈ ┌──────────────────────────┬───────────────────────────────┐ ≈≈≈≈≈│
-│≈≈ │ (basalto)                │ (calcário)                    │ ≈≈≈≈≈│
-│≈≈ │ Seu negócio já funciona. │ Nome completo                 │ ≈≈≈≈≈│
-│≈≈ │ Agora ele precisa se     │ E-mail                        │ ≈≈≈≈≈│
-│≈≈ │ multiplicar.             │ WhatsApp                      │ ≈≈≈≈≈│
-│≈≈ │ 20 de outubro de 2026    │ Empresa                       │ ≈≈≈≈≈│
-│≈≈ │ A partir das 10h00       │ Segmento ▾                    │ ≈≈≈≈≈│
-│≈≈ │ BE Factory, São Paulo    │ ☐ Aceito o contato (LGPD)     │ ≈≈≈≈≈│
-│≈≈ │                          │ [Quero garantir minha inscr.] │ ≈≈≈≈≈│
-│≈≈ └──────────────────────────┴───────────────────────────────┘ ≈≈≈≈≈│
+│≈≈ ┌───────────────────────────────────────────────┐ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ (basalto)                                     │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ Paulo Kazaks convida Cila Santos & Bruno R.   │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ Seu negócio já funciona.                      │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ Agora ele precisa se multiplicar.  (H2 largo) │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ 20 de outubro de 2026 │ A partir das 10h00 │  │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ │ BE Factory, São Paulo                         │ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
+│≈≈ └───────────────────────────────────────────────┘ ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈│
 └──────────────────────────────────────────────────────────────────────┘
-Cartão: colunas 2–11, raio 4px. Mobile: o painel basalto fica por cima do formulário.
+Cartão basalto: colunas 1–8, raio 4px, padding de 64px (desktop) / 32px (mobile). Mobile: cartão com largura total sobre a onda.
 ```
-- **Campos:** Nome completo*, E-mail*, WhatsApp* (máscara `(11) 91234-5678`), Empresa*, Segmento (select: Beleza e estética, Varejo, Serviços, Indústria, Educação, Tecnologia, Saúde, Alimentação, Outro), consentimento*.
-- **Consentimento:** "Aceito que a equipe HM Negócios entre em contato sobre esta formação e trate meus dados de acordo com a LGPD."
-- **Botão:** "Quero garantir minha inscrição". Durante o envio: "Enviando…".
-- **Sucesso** (substitui o formulário): "Inscrição recebida" / "Obrigado, {primeiro nome}. Nossa equipe vai falar com você pelo WhatsApp informado para os próximos passos."
-- **Erros** (por baixo do campo, em pau-brasil, com ícone):
-  - "Informe seu nome completo."
-  - "Digite um e-mail válido, como nome@empresa.com.br."
-  - "Digite um WhatsApp com DDD, como (11) 91234-5678."
-  - "Informe o nome da sua empresa."
-  - "Para continuar, aceite o contato sobre a formação."
-- **Nesta versão não se guardam dados:** o envio só valida e mostra o sucesso. Quando o processo de inscrição ou checkout estiver definido, liga-se ao Lovable Cloud ou ao checkout.
+- **Linha de convite:** "Paulo Kazaks convida Cila Santos & Bruno Rosado" (como no hero).
+- **Título (H2, largura 125%):** "Seu negócio já funciona. Agora ele precisa se multiplicar."
+- **Informações:** "20 de outubro de 2026" (brasa) | "A partir das 10h00" | "BE Factory, São Paulo".
 
 ### Footer (basalto)
 "Negócios Sem Fronteiras" / "20 de outubro de 2026 | BE Factory, São Paulo" / "Conheça o ecossistema: HN Hit Nails | Cila Santos | Elite Mind Business | Fluxus" (noutro separador) / "Uma iniciativa HM Negócios" / "© 2026" / "Política de privacidade" (link a publicar).
 
-### Barra fixa de inscrição (só mobile)
-Aparece quando o hero sai do ecrã e esconde-se quando `#inscricao` fica visível. Mostra "20 out | São Paulo" à esquerda e o botão brasa "Garantir inscrição" à direita. Respeita `env(safe-area-inset-bottom)`.
-
 ---
 
-## 8. Conversão (checklist)
+## 8. Página informativa (sem inscrição)
 
-- 6 pontos de CTA, com o mesmo texto e a mesma cor: header, hero, depois do ecossistema, convite do Paulo, "Por que", informações práticas. Todos levam a `#inscricao` com scroll suave. Há ainda a barra fixa no mobile.
-- Urgência real: contador até à data e hora do evento. Não se inventam vagas nem preços.
-- Autoridade antes do pedido: parceria, bios e ecossistema real com links de prova.
-- Formulário curto (5 campos + consentimento), com erros específicos e sucesso claro.
-- Sem menu de navegação, para não haver fugas. Links externos só no bloco de prova e no footer, sempre noutro separador.
+- **Decisão do Diogo em 29/09/2026:** a LP é só informativa. Não há botões de inscrição, formulário, barra fixa nem pergunta "Como faço minha inscrição?".
+- O percurso continua a fechar no encontro: contador real até à data e hora, informações práticas e encerramento com data e local.
+- Autoridade: parceria, bios e ecossistema real com links de prova.
+- Sem menu de navegação. Os únicos links externos são os 4 do ecossistema (secção 06 e footer), sempre noutro separador.
 
 ## 9. Acessibilidade e performance
 
 - Contrastes da secção 2 verificados. Foco visível com contorno de 2px (basalto em fundo claro, calcário em fundo escuro) e offset de 3px.
-- `prefers-reduced-motion` respeitado. HTML semântico (um só `h1`). Labels em todos os campos. Acordeão acessível (Radix).
+- `prefers-reduced-motion` respeitado. HTML semântico (um só `h1`). Acordeão acessível (Radix).
 - `<html lang="pt-BR">`, título "Negócios Sem Fronteiras | 20 de outubro, São Paulo", meta description e tags OG.
 - Fontes com `preconnect` e `display=swap`. Imagens com `loading="lazy"`, excepto a do hero. Metas: LCP < 2,5s, CLS < 0,1.
 
 ## 10. Stack no Lovable
 
-React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion, Input, Select, Checkbox, Button personalizados), framer-motion, lucide-react. Uma só página, com secções com `id`. Tokens da secção 2 em CSS variables e no `tailwind.config`.
+React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion), framer-motion, lucide-react. Uma só página, com secções com `id`. Tokens da secção 2 em CSS variables e no `tailwind.config`.
 
 ## 11. Por confirmar antes de publicar
 
@@ -478,7 +456,7 @@ React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion, Input, Select, Chec
 | URLs oficiais das 4 marcas | Pus as que encontrei na web (tabela da secção 06). Falta confirmação oficial |
 | Endereço final e acesso à BE Factory | Não publicado. Encontrei uma morada pública da empresa, mas não a uso sem confirmação |
 | Estacionamento, coffee break, certificado | A confirmar |
-| Campos definitivos do formulário e processo de checkout | Proposta na secção 14. Nesta versão não se guardam dados |
+| Processo de inscrição | Fora desta versão: a LP é só informativa (decisão de 29/09/2026). O Lovable Cloud ficou activado no projecto, mas sem tabelas nem dados |
 | Foto do Paulo Kazaks e logótipos | Não recebidos. Placeholder |
 | Grafia "Kazaks" | **Confirmado pelo Diogo em 29/09/2026:** "Kazaks". A imprensa escreve "Kazak", mas não se usa |
 | "HM Negócios" | **Confirmado pelo Diogo em 29/09/2026:** "HM Negócios" |
