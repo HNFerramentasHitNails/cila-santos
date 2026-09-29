@@ -112,6 +112,11 @@ Regras:
 - **Bio da Cila:** foto individual carregada pelo Diogo em 29/09/2026 ("colocar com imagem individual Cila Santos").
 - **Bio do Bruno:** recorte da foto do hero até haver foto individual.
 - **Regra de série:** os três retratos (Cila, Bruno, Paulo) usam o mesmo formato (4:5) e o mesmo tratamento de cor.
+- **Recorte do Bruno:** janela da foto do hero de x 5%–51% e y 9%–47% (imagem com width 217%, left -11%, top -23% num contentor 4:5). Só o Bruno, sem nenhum pedaço da Cila. A 1ª versão mostrava a foto dupla inteira.
+- **Preto e branco que passa a cores (pedido do Diogo, 29/09/2026):** os retratos estão em `grayscale(1) contrast(1.05)`.
+  - Com rato: ao passar sobre o bloco da pessoa (ou com foco dentro dele) passam a cores, com `filter` em 500ms `cubic-bezier(.16,1,.3,1)`.
+  - Em ecrã tátil: passam a cores quando ficam 60% visíveis e ficam assim.
+  - Com `prefers-reduced-motion`: a mudança é instantânea.
 - **Onda Mar Largo:** componente SVG próprio (Apêndice A), com textura de pedras irregulares, as juntas da calçada. Nunca imagem rasterizada.
 
 ---
@@ -130,6 +135,7 @@ Três momentos com significado. Tudo o resto é resposta a acções da pessoa. C
    - **Manifestos:** nas 3 frases-manifesto, cada palavra passa de opacidade .22 para 1 enquanto a frase atravessa o ecrã (dos 80% aos 35% da altura), ligado ao scroll.
 
 **Micro-interacções:**
+- **Retratos:** passam de preto e branco a cores no hover/foco (500ms). Em ecrã tátil, passam quando ficam visíveis (ver secção 5).
 - **Tiles do ecossistema:** invertem para fundo basalto no hover e no foco (200ms).
 - **FAQ:** acordeão abre em 250ms.
 - **Linha de progresso do header:** `scaleX` ligado ao scroll da página.
@@ -195,7 +201,7 @@ MOBILE 375
 - **Subtítulo:** "Uma formação presencial para empresários que já construíram algo e querem transformar essa estrutura em novos produtos, novos canais e novas fontes de receita."
 - **Linha de informações:** 3 blocos separados por filete vertical: "20 de outubro de 2026" (brasa), "A partir das 10h00", "BE Factory, São Paulo". Não usar pontos médios.
 - **Coordenadas:** 13px, cinza, `tabular-nums`, numa linha de 40px em basalto logo **acima** da onda ("Lisboa…" à esquerda, "São Paulo…" à direita). Nunca por cima das ondas, onde ficam ilegíveis (erro visto na 1ª versão).
-- **O título nunca entra na coluna da foto:** largura máxima de 7 colunas e tamanho `clamp(44px, 5.4vw, 84px)` no desktop, para "Seu negócio já funciona." caber em 1–2 linhas sem tapar as caras. Na 1ª versão, a 1920px, a 1ª linha ia até aos ~75% da largura, por cima da foto.
+- **O título nunca entra na coluna da foto:** no desktop, 4 linhas explícitas com `nowrap`: "Seu negócio" / "já funciona." / "Agora ele precisa" / "se multiplicar.". Usa o maior tamanho (máximo 84px) em que "Agora ele precisa" cabe na coluna do texto a 1280, 1440 e 1920px. A 2ª versão ficou em 5 linhas, com "precisa" sozinho. Na 1ª versão, a 1920px, a 1ª linha ia até aos ~75% da largura, por cima da foto.
 
 ### 02 De Portugal para o Brasil (calcário)
 ```
