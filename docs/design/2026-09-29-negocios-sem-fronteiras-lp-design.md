@@ -386,13 +386,14 @@ Duas colunas: "É para você se" (fundo basalto) e "Não é para você se" (file
 │ ──────────────────────────────────────────────────────────────────── │
 │ Data            Horário            Formato          Local            │
 │ 20 de outubro   A partir das 10h   Presencial       BE Factory       │
-│ Cidade          Investimento       Vagas            Término          │
-│ São Paulo       [a confirmar]      [a confirmar]    [a confirmar]    │
+│ Cidade          Término                                              │
+│ São Paulo       [a confirmar]                                        │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 - **Contador:** até `2026-10-20T10:00:00-03:00` (São Paulo, sem horário de verão). Depois dessa hora mostra "O encontro já começou."
 - **Dados confirmados (PDF):** Data "20 de outubro de 2026"; Horário "A partir das 10h00"; Formato "Presencial"; Local "BE Factory"; Cidade "São Paulo, Brasil".
-- **Por confirmar (PDF, ponto 12):** Investimento, Vagas, Término. Mostram-se como etiqueta "a confirmar" (filete tracejado em cinza) para ficar claro na apresentação o que falta.
+- **Por confirmar (PDF, ponto 12):** Término, com a etiqueta "a confirmar" (filete tracejado em cinza).
+- **Investimento e vagas não aparecem na página** (decisão do Diogo em 29/09/2026).
 
 ### 13 Perguntas frequentes (calcário)
 Acordeão (shadcn), colunas 1–8. Uma pergunta aberta de cada vez.
@@ -400,10 +401,8 @@ Acordeão (shadcn), colunas 1–8. Uma pergunta aberta de cada vez.
 2. **Quando e onde acontece?** No dia 20 de outubro de 2026, a partir das 10h00, na BE Factory, em São Paulo.
 3. **É presencial ou online?** Presencial.
 4. **Quem conduz a formação?** Cila Santos e Bruno Rosado, empresários e CEOs vindos de Portugal, a convite de Paulo Kazaks, sócio dos dois na HM Negócios.
-5. **Qual é o investimento?** `[a confirmar]`
-6. **Quantas vagas existem?** `[a confirmar]`
-7. **A que horas termina?** `[a confirmar]`
-8. **Há certificado, coffee break ou estacionamento?** `[a confirmar]`
+5. **A que horas termina?** `[a confirmar]`
+6. **Há certificado, coffee break ou estacionamento?** `[a confirmar]`
 
 ### 14 Encerramento (`#encerramento`, fundo Mar Largo em página inteira)
 Sem formulário e sem botão: a página fecha repetindo a tese e o encontro.
@@ -452,7 +451,8 @@ React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion), framer-motion, luc
 
 | Tema | Estado |
 |---|---|
-| Valor da inscrição, hora de término, número de vagas | O PDF manda confirmar. Ficam como "a confirmar" |
+| Hora de término | O PDF manda confirmar. Fica como "a confirmar" |
+| Valor da inscrição e número de vagas | Retirados da página (decisão do Diogo em 29/09/2026) |
 | URLs oficiais das 4 marcas | Pus as que encontrei na web (tabela da secção 06). Falta confirmação oficial |
 | Endereço final e acesso à BE Factory | Não publicado. Encontrei uma morada pública da empresa, mas não a uso sem confirmação |
 | Estacionamento, coffee break, certificado | A confirmar |
