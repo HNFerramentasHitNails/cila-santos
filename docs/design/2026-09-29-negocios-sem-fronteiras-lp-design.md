@@ -107,8 +107,11 @@ Regras:
 - **Foto principal:** Cila (de branco) e Bruno (de preto) de costas um para o outro, com as bandeiras de Portugal e do Brasil atrás. Retrato 2:3 (1024×1536).
   - **No hero:** a cores, na metade direita, a sangrar até à margem direita e ao topo. Máscara em gradiente para o basalto na esquerda (0→35%) e em baixo. `object-position: center 15%`, para as caras ficarem sempre visíveis.
   - **Nas bios:** recortes da mesma foto a preto e branco (`grayscale(1) contrast(1.08)`), 4:5. Bruno com `object-position: 28% 18%`, Cila com `object-position: 74% 18%`.
-  - **Ficheiro:** `src/assets/cila-bruno.jpg`. Até chegar o ficheiro, fica um placeholder com as mesmas proporções.
-- **Paulo Kazaks:** sem foto por agora. Placeholder tipográfico (monograma "PK" largo em basalto sobre `--linha`, 4:5).
+  - **Ficheiro:** `src/assets/cila-bruno.jpg` (carregado pelo Diogo no Lovable em 29/09/2026).
+- **Paulo Kazaks:** foto real em `src/assets/paulo-kazaks.png` (carregada pelo Diogo em 29/09/2026), 4:5. Substitui o monograma "PK".
+- **Bio da Cila:** foto individual carregada pelo Diogo em 29/09/2026 ("colocar com imagem individual Cila Santos").
+- **Bio do Bruno:** recorte da foto do hero até haver foto individual.
+- **Regra de série:** os três retratos (Cila, Bruno, Paulo) usam o mesmo formato (4:5) e o mesmo tratamento de cor.
 - **Onda Mar Largo:** componente SVG próprio (Apêndice A), com textura de pedras irregulares, as juntas da calçada. Nunca imagem rasterizada.
 
 ---
@@ -457,7 +460,9 @@ React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion), framer-motion, luc
 | Endereço final e acesso à BE Factory | Não publicado. Encontrei uma morada pública da empresa, mas não a uso sem confirmação |
 | Estacionamento, coffee break, certificado | A confirmar |
 | Processo de inscrição | Fora desta versão: a LP é só informativa (decisão de 29/09/2026). O Lovable Cloud ficou activado no projecto, mas sem tabelas nem dados |
-| Foto do Paulo Kazaks e logótipos | Não recebidos. Placeholder |
+| Foto do Paulo Kazaks | Recebida (29/09/2026) |
+| Foto individual do Bruno | Não recebida. Usa-se recorte da foto do hero |
+| Logótipos das marcas | Não recebidos. As marcas aparecem só em texto |
 | Grafia "Kazaks" | **Confirmado pelo Diogo em 29/09/2026:** "Kazaks". A imprensa escreve "Kazak", mas não se usa |
 | "HM Negócios" | **Confirmado pelo Diogo em 29/09/2026:** "HM Negócios" |
 | Texto de "Para quem é" | Proposto por mim. O PDF não o traz |
