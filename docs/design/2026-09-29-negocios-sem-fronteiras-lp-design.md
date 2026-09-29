@@ -480,8 +480,8 @@ React + Vite + TypeScript + Tailwind + shadcn/ui (Accordion, Input, Select, Chec
 | Estacionamento, coffee break, certificado | A confirmar |
 | Campos definitivos do formulário e processo de checkout | Proposta na secção 14. Nesta versão não se guardam dados |
 | Foto do Paulo Kazaks e logótipos | Não recebidos. Placeholder |
-| Grafia "Kazaks" | Uso "Kazaks", como no PDF, no site pessoal e no LinkedIn dele. A imprensa (Brazil Beauty News, Revista Empresários) escreve "Kazak" |
-| "HM Negócios" | Não encontrei presença pública com este nome. Confirmar que não é "HN Negócios" |
+| Grafia "Kazaks" | **Confirmado pelo Diogo em 29/09/2026:** "Kazaks". A imprensa escreve "Kazak", mas não se usa |
+| "HM Negócios" | **Confirmado pelo Diogo em 29/09/2026:** "HM Negócios" |
 | Texto de "Para quem é" | Proposto por mim. O PDF não o traz |
 
 ## 12. Fontes consultadas
