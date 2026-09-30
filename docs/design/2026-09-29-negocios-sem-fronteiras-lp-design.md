@@ -434,7 +434,7 @@ Cartão basalto: colunas 1–8, raio 4px, padding de 64px (desktop) / 32px (mobi
 - **Informações:** "20 de outubro de 2026" (brasa) | "A partir das 10h00" | "BE Factory, São Paulo".
 
 ### Footer (basalto)
-"Negócios Sem Fronteiras" / "20 de outubro de 2026 | BE Factory, São Paulo" / "Conheça o ecossistema: HN Hit Nails | Cila Santos | Elite Mind Business | Fluxus" (noutro separador) / "Uma iniciativa HM Negócios" / "© 2026" / "Política de privacidade" (link a publicar).
+"Negócios Sem Fronteiras" / "20 de outubro de 2026 | BE Factory, São Paulo" / "Conheça o ecossistema: HN Hit Nails | Cila Santos | Elite Mind Business | Fluxus" (noutro separador) / "Uma iniciativa HM Negócios" / "© 2026" (sem link de política de privacidade: retirado a pedido do Diogo em 30/09/2026, porque a página não recolhe dados).
 
 ---
 
