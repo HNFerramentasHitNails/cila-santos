@@ -621,3 +621,12 @@ Antes de abrir inscrições reais:
 - limpar as linhas de teste da tabela `inscricoes`, com cópia antes;
 - apagar o cliente "Teste Silva" na Stripe live;
 - domínio próprio.
+
+### 01/10/2026 — formulário: dados perdidos no carregamento
+- **Sintoma:** no teste do agente, os campos preenchidos de forma automática logo ao abrir a página ficaram vazios.
+- **Causa provável:** valores introduzidos antes de o React assumir o formulário (página SSR) eram descartados.
+- **Correcção (commit Lovable `a1750e0`):**
+  - ao montar, o formulário recupera do DOM os valores já escritos, com as mesmas máscaras;
+  - todos os campos passam a ter `name`, mais `autoComplete` na UF e na razão social;
+  - o WhatsApp colado com "+55" fica sem o indicativo.
+- **Teste sem submissão e sem Stripe:** passou em 2 corridas seguidas. Uma primeira corrida, durante a recompilação do servidor, falhou.
