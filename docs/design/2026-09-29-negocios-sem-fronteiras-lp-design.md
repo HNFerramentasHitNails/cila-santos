@@ -621,8 +621,8 @@ Passagem a live (01/10/2026, 11:06, pedido do Diogo no Lovable "passar o stripe 
 Ainda sem teste live: um pagamento concluído (linha 'pago'), um Pix real, os recibos e os avisos à Miriam.
 
 Antes de abrir inscrições reais:
-- termos e política de privacidade (textos do cliente; hoje dizem "Texto em preparação");
-- chave live com as permissões certas, webhook live no URL publicado ou no domínio próprio, e retirar a guarda de teste;
+- termos e política de privacidade: os textos já estão no site (/termos e /privacidade, versão provisória de 01/10/2026). Falta fechar os 10 pontos "a confirmar" (8 nos termos, 2 na privacidade) e a revisão jurídica;
+- ~~chave live com as permissões certas, webhook live no URL publicado ou no domínio próprio, e retirar a guarda de teste~~ **Feito a 01/10/2026:** chave `rk_live_`, webhook live em `https://hm-negocios.lovable.app/api/public/stripe-webhook` com os 4 eventos, guarda retirada. Com o domínio próprio, o webhook tem de passar para o novo endereço;
 - na Stripe live: Pix activo, recibos por email ao cliente, acesso e notificações da Miriam;
 - nota fiscal: quem emite;
 - ~~limpar as linhas de teste da tabela `inscricoes`~~ **Feito a 01/10/2026:** 5 linhas apagadas (4 pendentes, 1 paga de teste). Cópia em `inscricoes_backup_teste_20261001` na base de dados; a tabela ficou com 0 linhas.
