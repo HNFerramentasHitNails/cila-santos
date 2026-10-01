@@ -604,7 +604,7 @@ Decisões do Diogo, a partir do feedback do Nelson (agência):
 Percurso técnico (Lovable):
 1. Formulário (`#inscricao`).
 2. `createInscricao`: valida no servidor, bloqueia email já pago, grava 'pendente' e cria o Customer e a Checkout Session.
-3. Webhook `/api/public/stripe-webhook`: verifica a assinatura e é o único que marca 'pago'. Procura a linha por `inscricao_id` e pelo session id, e responde 500 em erro de base de dados.
+3. Webhook `/api/public/stripe-webhook`: verifica a assinatura e é o único que marca 'pago'. Procura a linha por `inscricao_id` e pelo session id, e responde 500 em erro de base de dados. Sessão desta formação sem linha: 500 (a Stripe reenvia), excepto em `checkout.session.expired`, que responde 200 "ok" (sem pagamento, nada a perder; commit Lovable `66eb3d5`).
 4. `/inscricao/sucesso`: só lê.
 
 Teste de ponta a ponta em modo de teste, 01/10/2026, feito pelo agente do Lovable e verificado no histórico:
@@ -620,6 +620,13 @@ Passagem a live (01/10/2026, 11:06, pedido do Diogo no Lovable "passar o stripe 
 
 Ainda sem teste live: um pagamento concluído (linha 'pago'), um Pix real, os recibos e os avisos à Miriam.
 
+Webhook live, 01/10/2026 (tarde). Horas em UTC; o painel da Stripe mostra hora de Lisboa (+1):
+- **Pix:** a configuração de métodos de pagamento da conta (`pmc_1TIx1Q…`) tem cartão e Pix disponíveis e ligados (leitura pela API). A chave não tem "Accounts Read" e não precisa.
+- **Sessão do "Teste Silva" esquecida:** `cs_live_a1y4slq…`, criada às 10:04:40 pela pré-visualização (cancel_url `localhost:8080`), ficou aberta depois de a linha ter sido apagada. Ao caducar, o webhook ia responder 500 ("Inscrição não encontrada") e a Stripe ia reenviar durante dias. Correcção `66eb3d5` (ver o passo 3 acima). A sessão foi expirada pela API às 13:09.
+- **Webhook duplicado:** havia dois endpoints live para o site (`we_1ULiOnRc…` e `we_1ULiabRc…`), cada um com o seu segredo; o site só guarda um, por isso um deles falhava sempre. O Diogo apagou `we_1ULiOnRcs4np9RsbtCTyKNVs` às 13:17:44 (log da Stripe). Fica só `we_1ULiabRcs4np9RsbovxazELp` ("charismatic-legacy"). O `STRIPE_WEBHOOK_SECRET` foi regravado às ~13:22 com o segredo deste e o site republicado.
+- **Entregas nesse endpoint** (separador "Entregas de eventos"): 11:59:50 200 OK (teste live); 13:09:10 e 13:09:26 500 (código antigo ainda publicado); 13:26:45 **200 "ok"**, reenvio manual do evento `evt_1ULjjURcs4np9RsbMPb9yJOT` com a correcção activa. O segredo bate certo: com o segredo errado a resposta seria 400.
+- **Outros webhooks na mesma conta Stripe:** `www.belessa.pt/api/stripe/webhook` e uma função Supabase (`sqpkufmyijozyannxjts`). Ambos recebem `checkout.session.completed` de todos os pagamentos da conta, incluindo as inscrições desta formação. Não se sabe se ignoram pagamentos que não são deles.
+
 Antes de abrir inscrições reais:
 - termos e política de privacidade: os textos já estão no site (/termos e /privacidade, versão provisória de 01/10/2026). Falta fechar os 10 pontos "a confirmar" (8 nos termos, 2 na privacidade) e a revisão jurídica;
 - ~~chave live com as permissões certas, webhook live no URL publicado ou no domínio próprio, e retirar a guarda de teste~~ **Feito a 01/10/2026:** chave `rk_live_`, webhook live em `https://hm-negocios.lovable.app/api/public/stripe-webhook` com os 4 eventos, guarda retirada. Com o domínio próprio, o webhook tem de passar para o novo endereço;
@@ -627,7 +634,8 @@ Antes de abrir inscrições reais:
 - nota fiscal: quem emite;
 - ~~limpar as linhas de teste da tabela `inscricoes`~~ **Feito a 01/10/2026:** 5 linhas apagadas (4 pendentes, 1 paga de teste). Cópia em `inscricoes_backup_teste_20261001` na base de dados; a tabela ficou com 0 linhas.
 - ~~apagar o cliente "Teste Silva" na Stripe live~~ **Feito pelo Diogo a 01/10/2026.**
-- domínio próprio.
+- domínio próprio;
+- confirmar com quem gere os webhooks da Belessa e da função Supabase que ignoram os pagamentos desta formação.
 
 ### 01/10/2026 — formulário: dados perdidos no carregamento
 - **Sintoma:** no teste do agente, os campos preenchidos de forma automática logo ao abrir a página ficaram vazios.
