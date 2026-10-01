@@ -1,6 +1,6 @@
 # Política de privacidade
 
-_Versão provisória, sujeita a revisão. Última atualização: 1 de outubro de 2026._
+_Última atualização: 1 de outubro de 2026._
 
 ## 1. Quem é responsável pelos seus dados
 
@@ -39,7 +39,7 @@ Somente com os serviços necessários para a inscrição funcionar:
 - **ViaCEP** (preenchimento do endereço): quando você digita o CEP, o CEP é enviado ao ViaCEP para obter rua, bairro, cidade e UF. Nenhum outro dado é enviado.
 - **Google Fonts** (fontes de texto da página): recebe o seu endereço IP quando a página carrega.
 - **WhatsApp (Meta):** somente se você clicar no botão "Fale conosco", conforme as regras do próprio WhatsApp.
-- **Equipe da Organizadora e parceiros da formação (HM Negócios):** para organizar o evento. Detalhe de quem tem acesso: {{a confirmar}}.
+- **Equipe da Organizadora e parceiros da formação:** a equipe da Organizadora responsável pelas inscrições e pelos pagamentos; os formadores Cila Santos e Bruno Rosado; e Paulo Kazaks e a HM Negócios, somente para o check-in e os contatos sobre o evento.
 - **Autoridades:** quando a lei exigir.
 
 Não vendemos seus dados.
@@ -51,7 +51,7 @@ A Organizadora está em Portugal, e alguns serviços (Stripe, Lovable, Google, M
 ## 6. Por quanto tempo guardamos
 
 - **Inscrições pagas:** pelo prazo exigido pela legislação fiscal e contábil aplicável.
-- **Inscrições não pagas** (pendentes, recusadas ou expiradas): {{a confirmar}}. Depois, são apagadas.
+- **Inscrições não pagas** (pendentes, recusadas ou expiradas): até 90 dias após o evento (18 de janeiro de 2027). Depois, são apagadas.
 
 ## 7. Seus direitos
 
