@@ -588,3 +588,36 @@ const waveX = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -384]);
 <div className="h-[140px] md:h-[180px]"><CalcadaWaves depth={220} shift={waveX} /></div>
 // Faixa vertical da parceria (secção 07): <div className="w-[120px] self-stretch"><CalcadaWaves vertical length={960} depth={240} /></div>
 ```
+
+---
+
+## Adenda 01/10/2026 — inscrição paga (substitui a decisão de 29/09 de LP só informativa)
+
+Decisões do Diogo, a partir do feedback do Nelson (agência):
+- **Inscrição paga:** R$ 300, por Stripe Checkout da Cila Santos (conta portuguesa), com cartão e Pix. Boleto não existe para contas portuguesas ([docs.stripe.com/payments/boleto](https://docs.stripe.com/payments/boleto)).
+- **IOF do Pix (3,5%):** pago pelo comprador (`amount_includes_iof: "never"`) ([docs.stripe.com/payments/pix](https://docs.stripe.com/payments/pix)).
+- **Faturação brasileira:** pessoa física (CPF) ou jurídica (CNPJ + razão social), com endereço e CEP. A Stripe aceitou o `br_cpf` no Customer, verificado no teste.
+- **Aviso de pagamento à equipa:** feito pela Stripe (dashboard), para miriam.peixe@hnhitnails.com.
+- **WhatsApp flutuante:** +351 927 250 911, com mensagem pré-escrita. O glifo verde é a única excepção à paleta.
+- **Voltam:** os CTAs "Quero garantir minha inscrição", a barra fixa no mobile ("R$ 300 | 20 out"), o investimento nas informações práticas e as perguntas do FAQ sobre investimento, inscrição e pagamento. As vagas continuam fora.
+
+Percurso técnico (Lovable):
+1. Formulário (`#inscricao`).
+2. `createInscricao`: valida no servidor, bloqueia email já pago, grava 'pendente' e cria o Customer e a Checkout Session.
+3. Webhook `/api/public/stripe-webhook`: verifica a assinatura e é o único que marca 'pago'. Procura a linha por `inscricao_id` e pelo session id, e responde 500 em erro de base de dados.
+4. `/inscricao/sucesso`: só lê.
+
+Teste de ponta a ponta em modo de teste, 01/10/2026, feito pelo agente do Lovable e verificado no histórico:
+- pagamento com cartão 4242 → linha `pago`, `card`, `pago_em` 10:48:17 UTC, sessão `cs_test_…`;
+- a mesma submissão repetida → bloqueada com "Este e-mail já tem uma inscrição paga…", 5 linhas antes e 5 depois.
+
+Incidente (01/10/2026, cerca das 10:00): a primeira chave guardada no projecto era real (`rk_live_`). Um teste do agente criou na conta real da Cila um cliente "Teste Silva" e uma sessão de checkout por pagar. Sem cobrança. Desde então, `getStripe` só aceita chaves de teste.
+
+Antes de abrir inscrições reais:
+- termos e política de privacidade (textos do cliente; hoje dizem "Texto em preparação");
+- chave live com as permissões certas, webhook live no URL publicado ou no domínio próprio, e retirar a guarda de teste;
+- na Stripe live: Pix activo, recibos por email ao cliente, acesso e notificações da Miriam;
+- nota fiscal: quem emite;
+- limpar as linhas de teste da tabela `inscricoes`, com cópia antes;
+- apagar o cliente "Teste Silva" na Stripe live;
+- domínio próprio.
