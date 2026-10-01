@@ -6,7 +6,7 @@
 
 ## 1. Quem organiza
 
-A formação **Negócios Sem Fronteiras** é organizada por **LUCKYTARGET, LDA**, com sede em Avenida Professor Egas Moniz, Armazém 1, 2135-232 Samora Correia, Portugal, NIPC 508725607, doravante "Organizadora". Contato: [A PREENCHER: e-mail de contato] e WhatsApp +351 927 250 911.
+A formação **Negócios Sem Fronteiras** é organizada por **LUCKYTARGET, LDA**, com sede em Avenida Professor Egas Moniz, Zona Industrial Parque do Alto, Armazém 1, 2135-232 Samora Correia (Benavente), Portugal, NIPC 508725607, doravante "Organizadora". Contato: geral@hnhitnails.com e WhatsApp +351 927 250 911.
 
 A formação conta com Cila Santos e Bruno Rosado como formadores, a convite de Paulo Kazaks, sócios na HM Negócios.
 
@@ -34,7 +34,7 @@ A formação conta com Cila Santos e Bruno Rosado como formadores, a convite de 
 
 ## 5. Direito de arrependimento
 
-Em compras feitas pela internet, você pode desistir da inscrição **no prazo de 7 (sete) dias corridos a contar do pagamento**, sem precisar justificar, com **reembolso integral** do valor pago (art. 49 do Código de Defesa do Consumidor). Para isso, envie um e-mail para [A PREENCHER: e-mail] ou uma mensagem pelo WhatsApp +351 927 250 911 com o seu nome e o e-mail usado na inscrição.
+Em compras feitas pela internet, você pode desistir da inscrição **no prazo de 7 (sete) dias corridos a contar do pagamento**, sem precisar justificar, com **reembolso integral** do valor pago (art. 49 do Código de Defesa do Consumidor). Para isso, envie um e-mail para geral@hnhitnails.com ou uma mensagem pelo WhatsApp +351 927 250 911 com o seu nome e o e-mail usado na inscrição.
 
 O reembolso é feito pelo mesmo meio de pagamento, pela Stripe. O prazo para o valor aparecer na sua conta ou fatura depende do banco ou da operadora do cartão.
 
@@ -69,7 +69,7 @@ O tratamento dos seus dados está descrito na [Política de privacidade](/privac
 
 ## 11. Contato e reclamações
 
-Dúvidas, pedidos e reclamações: [A PREENCHER: e-mail] ou WhatsApp +351 927 250 911. Respondemos em até [A PREENCHER: X] dias úteis.
+Dúvidas, pedidos e reclamações: geral@hnhitnails.com ou WhatsApp +351 927 250 911. Respondemos em até [A PREENCHER: X] dias úteis.
 
 ## 12. Lei aplicável
 

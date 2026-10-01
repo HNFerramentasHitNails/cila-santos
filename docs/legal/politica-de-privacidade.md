@@ -6,8 +6,8 @@
 
 ## 1. Quem é responsável pelos seus dados
 
-A controladora dos dados é **LUCKYTARGET, LDA**, com sede em Avenida Professor Egas Moniz, Armazém 1, 2135-232 Samora Correia, Portugal, NIPC 508725607.
-Contato para assuntos de privacidade: [A PREENCHER: e-mail]. [A PREENCHER: nome do encarregado de proteção de dados (DPO), se existir.]
+A controladora dos dados é **LUCKYTARGET, LDA**, com sede em Avenida Professor Egas Moniz, Zona Industrial Parque do Alto, Armazém 1, 2135-232 Samora Correia (Benavente), Portugal, NIPC 508725607.
+Contato para assuntos de privacidade: geral@hnhitnails.com. [A PREENCHER: nome do encarregado de proteção de dados (DPO), se existir.]
 
 ## 2. Que dados recolhemos
 
@@ -70,7 +70,7 @@ Pode, a qualquer momento:
 
 (LGPD art. 18; RGPD arts. 15 a 22.)
 
-Para exercer qualquer destes direitos, escreva para [A PREENCHER: e-mail de privacidade], com o e-mail usado na inscrição. Respondemos em até 15 dias.
+Para exercer qualquer destes direitos, escreva para geral@hnhitnails.com, com o e-mail usado na inscrição. Respondemos em até 15 dias.
 
 Pode também reclamar junto da **ANPD** (Autoridade Nacional de Proteção de Dados, Brasil, www.gov.br/anpd) ou da **CNPD** (Comissão Nacional de Proteção de Dados, Portugal, www.cnpd.pt).
 
