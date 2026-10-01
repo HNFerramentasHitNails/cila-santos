@@ -611,7 +611,14 @@ Teste de ponta a ponta em modo de teste, 01/10/2026, feito pelo agente do Lovabl
 - pagamento com cartão 4242 → linha `pago`, `card`, `pago_em` 10:48:17 UTC, sessão `cs_test_…`;
 - a mesma submissão repetida → bloqueada com "Este e-mail já tem uma inscrição paga…", 5 linhas antes e 5 depois.
 
-Incidente (01/10/2026, cerca das 10:00): a primeira chave guardada no projecto era real (`rk_live_`). Um teste do agente criou na conta real da Cila um cliente "Teste Silva" e uma sessão de checkout por pagar. Sem cobrança. Desde então, `getStripe` só aceita chaves de teste.
+Incidente (01/10/2026, cerca das 10:00): a primeira chave guardada no projecto era real (`rk_live_`). Um teste do agente criou na conta real da Cila um cliente "Teste Silva" e uma sessão de checkout por pagar. Sem cobrança. A seguir, `getStripe` passou a aceitar só chaves de teste.
+
+Passagem a live (01/10/2026, 11:06, pedido do Diogo no Lovable "passar o stripe api para o live"): a guarda de teste foi retirada (commit Lovable `0761b71`) e `getStripe` aceita chaves live e de teste. A chave do projecto é `rk_live_`. Teste live sem cobrança às 11:59:
+- inscrição no site publicado → linha 'pendente' e sessão `cs_live_…` de R$ 300 (cartão e Pix);
+- a sessão foi expirada pela API e o webhook live pôs a linha em 'expirado' em menos de 30 s;
+- limpeza: o cliente de teste foi apagado na Stripe (`deleted: true`); a linha foi copiada para `inscricoes_backup_teste_20261001` (que fica com 6 linhas) e depois apagada. `inscricoes` ficou com 0 linhas.
+
+Ainda sem teste live: um pagamento concluído (linha 'pago'), um Pix real, os recibos e os avisos à Miriam.
 
 Antes de abrir inscrições reais:
 - termos e política de privacidade (textos do cliente; hoje dizem "Texto em preparação");
