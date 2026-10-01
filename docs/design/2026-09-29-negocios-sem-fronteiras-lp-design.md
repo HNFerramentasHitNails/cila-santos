@@ -618,8 +618,8 @@ Antes de abrir inscrições reais:
 - chave live com as permissões certas, webhook live no URL publicado ou no domínio próprio, e retirar a guarda de teste;
 - na Stripe live: Pix activo, recibos por email ao cliente, acesso e notificações da Miriam;
 - nota fiscal: quem emite;
-- limpar as linhas de teste da tabela `inscricoes`, com cópia antes;
-- apagar o cliente "Teste Silva" na Stripe live;
+- ~~limpar as linhas de teste da tabela `inscricoes`~~ **Feito a 01/10/2026:** 5 linhas apagadas (4 pendentes, 1 paga de teste). Cópia em `inscricoes_backup_teste_20261001` na base de dados; a tabela ficou com 0 linhas.
+- ~~apagar o cliente "Teste Silva" na Stripe live~~ **Feito pelo Diogo a 01/10/2026.**
 - domínio próprio.
 
 ### 01/10/2026 — formulário: dados perdidos no carregamento
