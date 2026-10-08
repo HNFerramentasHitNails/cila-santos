@@ -656,7 +656,7 @@ Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (c
 
 **Acesso**
 - Só dois emails: `miriam.peixe@hnhitnails.com` e `diogo.monteiro@hnhitnails.com`. A lista está em `src/lib/admin.server.ts`, só no servidor. Para dar ou tirar acesso, muda-se esse ficheiro.
-- Sem password: a pessoa escreve o email e recebe uma mensagem de acesso. Segundo o agente do Lovable, o modelo de email padrão do Lovable Cloud traz um link e não um código. A página aceita os dois.
+- Sem password: a pessoa escreve o email e recebe um código, que escreve na página. **Desde 08/10 (commits Lovable `5ec79bf` e `84108dc`) o código é enviado pelo nosso próprio SMTP**, e não pelo Lovable (ver "Envio por SMTP" abaixo). A 1.ª versão usava o envio do Lovable, com link, e esse email não chegou.
 - Registo público desligado e entrada por email ligada na autenticação (alterações feitas pelo agente). As contas dos dois emails são criadas pelo servidor no primeiro pedido. Antes desta alteração não havia contas (`auth.users` = 0, consulta de 08/10), por isso nada que já existisse deixou de funcionar.
 - Os dados chegam por funções de servidor que validam o token e o email antes de ler com a service role. A tabela `inscricoes` continua com RLS e sem políticas (0 políticas, consulta de 08/10).
 
@@ -684,5 +684,21 @@ Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (c
    - Correu bem até ao serviço de envio. A conta foi criada às 10:41:12 (`auth.users`) e o link foi gerado às 10:41:13 (`recovery_sent_at`, token em `auth.one_time_tokens`). No registo da autenticação, `/otp` deu 200 e a entrega ao serviço de envio do Lovable deu `"Hook ran successfully"` (`api.lovable.dev/.../backend/email-hook`).
    - Depois disso não há registo: o projecto não tem domínio de email próprio, e o histórico de envios do Lovable só cobre domínios próprios. O remetente é um endereço padrão do Lovable, num domínio do Lovable (o endereço exacto não aparece nos registos).
    - Causa provável, não verificada: retenção no filtro anti-spam do domínio (`mx1/mx2.cleanmx.pt`) ou na pasta de spam. **O email da Miriam está no mesmo domínio e no mesmo filtro.**
-   - Solução duradoura: configurar um domínio de envio próprio no Lovable Cloud (ex.: `notify.hnhitnails.com`, com SPF, DKIM e verificação no DNS). Permite também um modelo de email só com o código de 6 dígitos.
-3. Com o domínio próprio, o novo endereço tem de entrar na lista de endereços de regresso aceites pela autenticação. Se não entrar, o link volta ao endereço principal.
+   - Opção oferecida pelo Lovable: um domínio de envio próprio (ex.: `notify.hnhitnails.com`, com delegação NS no DNS, só em planos pagos). **O Diogo escolheu outra: SMTP com uma conta de email que já tem** (ver abaixo).
+3. Criar os 5 secrets SMTP no Lovable, publicar e voltar a testar (ver "Envio por SMTP").
+
+**Envio por SMTP (08/10/2026, decisão do Diogo)**
+- A autenticação do Lovable não aceita SMTP próprio: a configuração da autenticação do projecto não tem campos de SMTP, segundo o agente do Lovable e a documentação em docs.lovable.dev/features/custom-emails. Por isso o envio passou a ser feito pelo nosso código:
+  1. a conta é procurada ou criada;
+  2. verifica-se o limite de 1 email por minuto, guardado em `app_metadata.admin_code_sent_at`. Isto acontece **antes** de gerar o código, porque cada código novo anula o anterior (corrigido no `84108dc`);
+  3. `auth.admin.generateLink({ type: "magiclink" })` devolve o código em `email_otp`, sem enviar email;
+  4. o código vai por SMTP com a biblioteca `worker-mailer` (porta 465 com TLS, 587 com STARTTLS);
+  5. a página confirma o código com `verifyOtp({ type: "email" })`.
+- Os dados da conta ficam em 5 secrets do projecto: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` e `SMTP_FROM`. Não estão no código nem no repositório. **A 08/10, às 11:07 UTC, ainda não estavam criados:** o Diogo cria-os no Lovable, na secção de Secrets do projecto.
+- O código tem **8 dígitos** (configuração da autenticação). Os textos da página não indicam o número, e o campo aceita entre 6 e 8.
+- Teste feito pelo agente do Lovable, sem email: `generateLink` + `verifyOtp` com a conta do Diogo funcionou. Deixou `last_sign_in_at` = 11:03:42 UTC na conta do Diogo (`auth.users`).
+- **Por provar:**
+  - o envio SMTP a partir do site publicado, que corre em Cloudflare Workers (preset `cloudflare-module`). No preview não funciona, porque o preview corre em Node;
+  - a build de publicação com o `worker-mailer`.
+  Os dois só se provam ao publicar e pedir o primeiro código.
+- **Remetente:** o hnhitnails.com tem DMARC `p=reject` com alinhamento estrito, e o SPF autoriza a cleanmx, 94.46.175.209, 94.46.181.217, `a` e `mx` (DNS lido a 08/10). Um `SMTP_FROM` @hnhitnails.com tem de sair por um desses servidores. Uma caixa do alojamento do domínio cumpre isto.
