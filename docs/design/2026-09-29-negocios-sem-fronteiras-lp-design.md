@@ -645,3 +645,40 @@ Antes de abrir inscrições reais:
   - todos os campos passam a ter `name`, mais `autoComplete` na UF e na razão social;
   - o WhatsApp colado com "+55" fica sem o indicativo.
 - **Teste sem submissão e sem Stripe:** passou em 2 corridas seguidas. Uma primeira corrida, durante a recompilação do servidor, falhou.
+
+---
+
+## Adenda 08/10/2026 — página interna `/admin` (inscrições e pagamentos)
+
+Pedido do Diogo: uma página onde a Miriam veja as inscrições e se foram pagas na Stripe.
+
+Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (consultas à Stripe em lotes, etiqueta do Pix, filtros e textos da entrada). **Não está publicada:** a 08/10, `https://hm-negocios.lovable.app/admin` responde 404, e o preview responde 401 a quem não tem sessão no Lovable.
+
+**Acesso**
+- Só dois emails: `miriam.peixe@hnhitnails.com` e `diogo.monteiro@hnhitnails.com`. A lista está em `src/lib/admin.server.ts`, só no servidor. Para dar ou tirar acesso, muda-se esse ficheiro.
+- Sem password: a pessoa escreve o email e recebe uma mensagem de acesso. Segundo o agente do Lovable, o modelo de email padrão do Lovable Cloud traz um link e não um código. A página aceita os dois.
+- Registo público desligado e entrada por email ligada na autenticação (alterações feitas pelo agente). As contas dos dois emails são criadas pelo servidor no primeiro pedido. Antes desta alteração não havia contas (`auth.users` = 0, consulta de 08/10), por isso nada que já existisse deixou de funcionar.
+- Os dados chegam por funções de servidor que validam o token e o email antes de ler com a service role. A tabela `inscricoes` continua com RLS e sem políticas (0 políticas, consulta de 08/10).
+
+**O que mostra**
+- Todas as linhas de `inscricoes`, sem esconder nem juntar nenhuma. Se um email tiver mais de uma linha, aparece "Este email tem N inscrições".
+- Duas colunas de pagamento, porque respondem a perguntas diferentes:
+  - **Estado no site:** a coluna `status`, que só o webhook altera.
+  - **Pagamento na Stripe:** consulta em directo de cada Checkout Session pelo id gravado na linha (`retrieve`, nunca `list`, porque a conta tem pagamentos de outros negócios). Etiquetas: Pago, Reembolsado, Reembolsado em parte, Em disputa, A aguardar Pix, Pix não pago, Checkout aberto, Expirou sem pagamento, Sem sessão Stripe e Erro ao consultar.
+- "Não bate certo" (a vermelho) quando o site diz pago e a Stripe não diz Pago, ou o contrário. A página só mostra, não corrige.
+- Resumo com a forma de contagem ao lado de cada número. Filtros: Todas, Pagas no site, Por pagar no site, Pagas na Stripe e Não batem certo. Horas em hora de Lisboa.
+- Detalhe de cada linha: CPF/CNPJ, razão social, morada, consentimento, ids da Stripe e link para o pagamento no painel da Stripe.
+- As consultas à Stripe vão em lotes de 20 inscrições por chamada, porque o site corre na Cloudflare (cabeçalho `server: cloudflare`) e cada chamada tem um limite de pedidos.
+
+**Verificações**
+- A chave live lê uma Checkout Session com `payment_intent.latest_charge` e lista PaymentIntents com `latest_charge`: as duas leituras deram "ok" no teste só de leitura do agente do Lovable, a 08/10. É a mesma leitura que o webhook faz quando há um pagamento. Fica assim fechada a dúvida de a chave restrita não ter acesso às cobranças.
+- Entrada testada pelo agente só com um email fora da lista: mostra a mensagem neutra e não envia nada.
+- **Por testar:** a entrada com um email autorizado (é preciso receber o email), a lista com sessão iniciada e a verificação na Stripe com dados reais.
+- Estado da tabela a 08/10: 1 linha, que é o teste do Diogo de 01/10 (`expirado`). Ainda não há inscrições reais.
+
+**Alteração que não foi pedida:** no commit `4ad69bc`, o `package.json` fixou `@lovable.dev/vite-tanstack-config` em `2.25.3` (antes `^2.24.0`). Deve ter vindo da plataforma. Afecta a build do site todo e só se nota ao publicar.
+
+**Para a Miriam usar**
+1. Publicar o site. Os termos publicados já têm o texto final de 01/10 (verificado a 08/10 em `/termos`: "Última atualização: 1 de outubro de 2026." e nenhum "a confirmar"). Por isso a publicação só junta os dois commits de hoje e a alteração do `package.json`.
+2. O Diogo testa primeiro: abre `https://hm-negocios.lovable.app/admin`, escreve o seu email e confirma se chega um link ou um código.
+3. Com o domínio próprio, o novo endereço tem de entrar na lista de endereços de regresso aceites pela autenticação. Se não entrar, o link volta ao endereço principal.
