@@ -702,3 +702,21 @@ Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (c
   - a build de publicação com o `worker-mailer`.
   Os dois só se provam ao publicar e pedir o primeiro código.
 - **Remetente:** o hnhitnails.com tem DMARC `p=reject` com alinhamento estrito, e o SPF autoriza a cleanmx, 94.46.175.209, 94.46.181.217, `a` e `mx` (DNS lido a 08/10). Um `SMTP_FROM` @hnhitnails.com tem de sair por um desses servidores. Uma caixa do alojamento do domínio cumpre isto.
+
+**Testes do envio por SMTP no site publicado (08/10/2026, pedidos feitos por mim com o email do Diogo)**
+
+| Hora UTC | Resultado | Fonte |
+|---|---|---|
+| 11:18 | Falhou: `admin smtp: falhou`, fase "autenticação" | logs do site publicado (agente do Lovable) |
+| 11:38 | Falhou da mesma forma, depois de o Diogo corrigir os secrets | idem |
+| 11:58 | Falhou da mesma forma (o Diogo encontrou a password errada) | idem |
+| 12:59 | Falhou da mesma forma, depois de nova publicação | idem |
+| 13:02 | Login de diagnóstico no ambiente do agente do Lovable (smtplib, porta 465, AUTH PLAIN LOGIN): **entrou** | resposta do agente |
+| 13:51 | **Envio aceite:** `admin_code_sent_at` = 13:51:32 UTC na conta do Diogo | `auth.users` |
+
+- O teste das 13:51 foi feito depois da publicação do commit `826135b`, que só muda o log (a mensagem do servidor de email passa a ficar registada, com os dados sensíveis trocados por "[oculto]").
+- **Não se sabe porque falhou às 12:59 e funcionou às 13:51.** O código do envio é o mesmo. As hipóteses são:
+  - a publicação das 12:59 ainda não tinha a password corrigida;
+  - o fornecedor bloqueou temporariamente o login depois das tentativas falhadas.
+  Se voltar a falhar, o log mostra agora a resposta exacta do servidor.
+- Por confirmar pelo Diogo: se o email das 13:51 chegou à caixa, e a entrada completa (código, lista e coluna da Stripe).
