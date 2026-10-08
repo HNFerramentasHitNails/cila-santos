@@ -652,7 +652,7 @@ Antes de abrir inscrições reais:
 
 Pedido do Diogo: uma página onde a Miriam veja as inscrições e se foram pagas na Stripe.
 
-Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (consultas à Stripe em lotes, etiqueta do Pix, filtros e textos da entrada). **Não está publicada:** a 08/10, `https://hm-negocios.lovable.app/admin` responde 404, e o preview responde 401 a quem não tem sessão no Lovable.
+Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (consultas à Stripe em lotes, etiqueta do Pix, filtros e textos da entrada). **Publicada pelo Diogo a 08/10, entre as 10:37 e as 10:41 UTC:** às ~10:37 `https://hm-negocios.lovable.app/admin` respondia 404; às 10:41 o pedido de acesso do Diogo já veio do site publicado (registo da autenticação), e a página responde 200 com "noindex, nofollow". O preview continua a responder 401 a quem não tem sessão no Lovable.
 
 **Acesso**
 - Só dois emails: `miriam.peixe@hnhitnails.com` e `diogo.monteiro@hnhitnails.com`. A lista está em `src/lib/admin.server.ts`, só no servidor. Para dar ou tirar acesso, muda-se esse ficheiro.
@@ -679,6 +679,10 @@ Feita pelo agente do Lovable em dois commits: `4ad69bc` (página) e `da736d7` (c
 **Alteração que não foi pedida:** no commit `4ad69bc`, o `package.json` fixou `@lovable.dev/vite-tanstack-config` em `2.25.3` (antes `^2.24.0`). Deve ter vindo da plataforma. Afecta a build do site todo e só se nota ao publicar.
 
 **Para a Miriam usar**
-1. Publicar o site. Os termos publicados já têm o texto final de 01/10 (verificado a 08/10 em `/termos`: "Última atualização: 1 de outubro de 2026." e nenhum "a confirmar"). Por isso a publicação só junta os dois commits de hoje e a alteração do `package.json`.
-2. O Diogo testa primeiro: abre `https://hm-negocios.lovable.app/admin`, escreve o seu email e confirma se chega um link ou um código.
+1. ~~Publicar o site~~ **Feito pelo Diogo a 08/10** (ver acima). Antes de publicar, os termos já tinham o texto final de 01/10 (verificado em `/termos`), por isso a publicação só juntou os dois commits de hoje e a alteração do `package.json`.
+2. O Diogo testa primeiro. **1.º teste, 08/10, 10:41 UTC: o email não chegou.**
+   - Correu bem até ao serviço de envio. A conta foi criada às 10:41:12 (`auth.users`) e o link foi gerado às 10:41:13 (`recovery_sent_at`, token em `auth.one_time_tokens`). No registo da autenticação, `/otp` deu 200 e a entrega ao serviço de envio do Lovable deu `"Hook ran successfully"` (`api.lovable.dev/.../backend/email-hook`).
+   - Depois disso não há registo: o projecto não tem domínio de email próprio, e o histórico de envios do Lovable só cobre domínios próprios. O remetente é um endereço padrão do Lovable, num domínio do Lovable (o endereço exacto não aparece nos registos).
+   - Causa provável, não verificada: retenção no filtro anti-spam do domínio (`mx1/mx2.cleanmx.pt`) ou na pasta de spam. **O email da Miriam está no mesmo domínio e no mesmo filtro.**
+   - Solução duradoura: configurar um domínio de envio próprio no Lovable Cloud (ex.: `notify.hnhitnails.com`, com SPF, DKIM e verificação no DNS). Permite também um modelo de email só com o código de 6 dígitos.
 3. Com o domínio próprio, o novo endereço tem de entrar na lista de endereços de regresso aceites pela autenticação. Se não entrar, o link volta ao endereço principal.
